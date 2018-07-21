@@ -4,14 +4,20 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
 
+import appjoe.wordpress.com.testdemo.adapter.CardAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +42,11 @@ public class Tab1 extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private RecyclerView mRecyclerView;
+    private CardAdapter mCardAdapter;
+    private ArrayList<Card> mCardList;
+//    private RequestQueue mRequestQueue;
 
     TextView textView;
 
@@ -77,6 +88,14 @@ public class Tab1 extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tab1, container, false);
 
+        mRecyclerView = v.findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mCardList = new ArrayList<>();
+
+//        mRequestQueue = Volley.newRequestQueue(getActivity());
+
         /*
          * Retrofit code to fetch the Json data
          * */
@@ -96,8 +115,16 @@ public class Tab1 extends Fragment {
                         .getWorldpopulation());
 
                 for (Worldpopulation j : population) {
-                    flagData.append(j.getFlag() + "\n");
+//                    flagData.append(j.getFlag() + "\n");
+                    String countryName = j.getCountry();
+                    String imageUrl = j.getFlag();
+                    int rank = j.getRank();
+
+                    mCardList.add(new Card(imageUrl, countryName, rank));
                 }
+
+                mCardAdapter = new CardAdapter(getActivity(), mCardList);
+                mRecyclerView.setAdapter(mCardAdapter);
             }
 
             @Override
@@ -105,6 +132,8 @@ public class Tab1 extends Fragment {
                 Log.d("JSONError", t.getMessage());
             }
         });
+
+//        mRequestQueue.add(request);
 
         // Inflate the layout for this fragment
         return v;

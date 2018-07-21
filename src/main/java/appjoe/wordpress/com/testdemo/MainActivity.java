@@ -5,11 +5,17 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
 
+import appjoe.wordpress.com.testdemo.adapter.CardAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,7 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements Tab1.OnFragmentInteractionListener,Tab2.OnFragmentInteractionListener {
 
-    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements Tab1.OnFragmentIn
         tabLayout.addTab(tabLayout.newTab().setText("Part 1"));
         tabLayout.addTab(tabLayout.newTab().setText("Part 2"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        textView = (TextView) findViewById(R.id.jsontext);
+
 
 
         /*
@@ -54,11 +59,7 @@ public class MainActivity extends AppCompatActivity implements Tab1.OnFragmentIn
 
             }
         });
-        // End of code for Tabs
-
-
-
-//        ToDo subscribe to the string and use it in the activity
+        // End of code for Tab layout
     }
 
     @Override
