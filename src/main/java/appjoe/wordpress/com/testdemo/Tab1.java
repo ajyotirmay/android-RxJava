@@ -1,6 +1,7 @@
 package appjoe.wordpress.com.testdemo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -33,7 +35,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Use the {@link Tab1#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Tab1 extends Fragment {
+public class Tab1 extends Fragment implements CardAdapter.OnItemClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -43,10 +45,11 @@ public class Tab1 extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    public static final String EXTRA_URL = "imageUrl";
+
     private RecyclerView mRecyclerView;
     private CardAdapter mCardAdapter;
     private ArrayList<Card> mCardList;
-//    private RequestQueue mRequestQueue;
 
     TextView textView;
 
@@ -125,6 +128,8 @@ public class Tab1 extends Fragment {
 
                 mCardAdapter = new CardAdapter(getActivity(), mCardList);
                 mRecyclerView.setAdapter(mCardAdapter);
+                mCardAdapter.setItemOnClickListener(Tab1.this);
+
             }
 
             @Override
@@ -161,6 +166,16 @@ public class Tab1 extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent imagePreview = new Intent(getActivity(), ViewImage.class);
+        Card clickedItem = mCardList.get(position);
+
+        imagePreview.putExtra(EXTRA_URL, clickedItem.getImageUrl());
+
+        startActivity(imagePreview);
     }
 
     /**

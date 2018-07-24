@@ -19,6 +19,15 @@ import appjoe.wordpress.com.testdemo.R;
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
     private Context mContext;
     private ArrayList<Card> mCardList;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setItemOnClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public CardAdapter(Context context, ArrayList<Card> cardList) {
         mContext = context;
@@ -60,6 +69,18 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             mImageView = itemView.findViewById(R.id.image_view);
             mTextViewCountry = itemView.findViewById(R.id.text_view_country_name);
             mTextViewRank = itemView.findViewById(R.id.text_view_rank);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }
