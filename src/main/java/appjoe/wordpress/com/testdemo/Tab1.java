@@ -27,7 +27,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-/**
+/*
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link Tab1.OnFragmentInteractionListener} interface
@@ -51,15 +51,13 @@ public class Tab1 extends Fragment implements CardAdapter.OnItemClickListener{
     private CardAdapter mCardAdapter;
     private ArrayList<Card> mCardList;
 
-    TextView textView;
-
     private OnFragmentInteractionListener mListener;
 
     public Tab1() {
         // Required empty public constructor
     }
 
-    /**
+    /*
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
@@ -97,11 +95,9 @@ public class Tab1 extends Fragment implements CardAdapter.OnItemClickListener{
 
         mCardList = new ArrayList<>();
 
-//        mRequestQueue = Volley.newRequestQueue(getActivity());
-
         /*
          * Retrofit code to fetch the Json data
-         * */
+         */
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -118,7 +114,6 @@ public class Tab1 extends Fragment implements CardAdapter.OnItemClickListener{
                         .getWorldpopulation());
 
                 for (Worldpopulation j : population) {
-//                    flagData.append(j.getFlag() + "\n");
                     String countryName = j.getCountry();
                     String imageUrl = j.getFlag();
                     int rank = j.getRank();
@@ -137,8 +132,6 @@ public class Tab1 extends Fragment implements CardAdapter.OnItemClickListener{
                 Log.d("JSONError", t.getMessage());
             }
         });
-
-//        mRequestQueue.add(request);
 
         // Inflate the layout for this fragment
         return v;
@@ -178,7 +171,7 @@ public class Tab1 extends Fragment implements CardAdapter.OnItemClickListener{
         startActivity(imagePreview);
     }
 
-    /**
+    /*
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
