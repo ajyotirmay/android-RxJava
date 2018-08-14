@@ -49,19 +49,22 @@ class LoginActivity : AppCompatActivity() {
         Toast.makeText(this, "Invalid id or password", Toast.LENGTH_SHORT).show()
     }
 
-    fun login(v: View) {
+    fun login(v:View) {
         val email = findViewById<EditText>(R.id.uname)
         val passwd = findViewById<EditText>(R.id.passwd)
-        val emailid = email.text.toString()
+//        val emailid = email.text.toString()
+        validateLogin(email.text.toString(), passwd.text.toString())
+    }
 
-        if (Patterns.EMAIL_ADDRESS.matcher(emailid).matches()
-                && email.text.toString().isNotEmpty()
-                && passwd.text.toString().isNotEmpty()) {
+    fun validateLogin(email: String, passwd: String) {
+        if (Patterns.EMAIL_ADDRESS.matcher(email).matches()
+                && email.isNotEmpty()
+                && passwd.isNotEmpty()) {
             val prefs = this.getSharedPreferences("com.wordpress.appjoe.prefs", Context.MODE_PRIVATE)
             val email_val = prefs.getString("email", null)
             val passwd_val = prefs.getString("passwd", null)
 
-            if (emailid == email_val && passwd.text.toString() == passwd_val) {
+            if (email == email_val && passwd == passwd_val) {
                 writePrefs()
                 launchMain()
             } else {
@@ -70,7 +73,5 @@ class LoginActivity : AppCompatActivity() {
         } else {
             errorMessage()
         }
-
-
     }
 }

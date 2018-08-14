@@ -58,7 +58,7 @@ class Tab2 : Fragment() {
 
     private val cursor: Cursor?
         get() {
-            val mContentResolver = activity.contentResolver
+            val mContentResolver = activity!!.contentResolver
             return mContentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, ContactsContract.Contacts.DISPLAY_NAME + " ASC")
         }
     private var parentPath = ""
@@ -67,8 +67,8 @@ class Tab2 : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mParam1 = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getString(ARG_PARAM2)
+            mParam1 = arguments!!.getString(ARG_PARAM1)
+            mParam2 = arguments!!.getString(ARG_PARAM2)
         }
 
     }
@@ -96,28 +96,33 @@ class Tab2 : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater!!.inflate(R.layout.fragment_tab2, container, false)
         mButton = v.findViewById(R.id.extractContact)
 
         mButton.setOnClickListener {
             // Here, thisActivity is the current activity
-            if (ContextCompat.checkSelfPermission(context,
-                            Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            if (context?.let { it1 ->
+                        ContextCompat.checkSelfPermission(it1,
+                                Manifest.permission.READ_CONTACTS)
+                    } != PackageManager.PERMISSION_GRANTED) {
 
                 // Permission is not granted
                 // Should we show an explanation?
-                if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
-                                Manifest.permission.READ_CONTACTS)) {
+                if (activity?.let { it1 ->
+                            ActivityCompat.shouldShowRequestPermissionRationale(it1,
+                                    Manifest.permission.READ_CONTACTS)
+                        }!!) {
                     // Show an explanation to the user *asynchronously* -- don't block
                     // this thread waiting for the user's response! After the user
                     // sees the explanation, try again to request the permission.
                 } else {
                     // No explanation needed; request the permission
-                    ActivityCompat.requestPermissions(activity,
-                            arrayOf(Manifest.permission.READ_CONTACTS),
-                            requestReadContactsPermission)
+                    activity?.let { it1 ->
+                        ActivityCompat.requestPermissions(it1,
+                                arrayOf(Manifest.permission.READ_CONTACTS),
+                                requestReadContactsPermission)
+                    }
 
                     // requestReadContactsPermission is an
                     // app-defined int constant. The callback method gets the
@@ -198,7 +203,7 @@ class Tab2 : Fragment() {
 
     fun loadContacts(i: Int): String {
         val mBuilder = StringBuilder()
-        val mContentResolver = activity.contentResolver
+        val mContentResolver = activity!!.contentResolver
 
         mCursor!!.moveToPosition(i)
         if (mCursor!!.count > 0) {

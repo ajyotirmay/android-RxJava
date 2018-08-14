@@ -1,6 +1,6 @@
 package appjoe.wordpress.com.testdemo.adapter
 
-import android.content.Context
+import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +16,7 @@ import java.util.ArrayList
 import appjoe.wordpress.com.testdemo.Card
 import appjoe.wordpress.com.testdemo.R
 
-class CardAdapter(private val mContext: Context, private val mCardList: ArrayList<Card>) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+class CardAdapter(private val mContext: FragmentActivity?, private val mCardList: ArrayList<Card>) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
     private var mListener: OnItemClickListener? = null
 
     interface OnItemClickListener {

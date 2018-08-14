@@ -44,13 +44,12 @@ class Tab1 : Fragment(), CardAdapter.OnItemClickListener {
     fun onCreate(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mParam1 = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getString(ARG_PARAM2)
+            mParam1 = arguments!!.getString(ARG_PARAM1)
+            mParam2 = arguments!!.getString(ARG_PARAM2)
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val v = inflater!!.inflate(R.layout.fragment_tab1, container, false)
 
         mRecyclerView = v.findViewById(R.id.recycler_view)
