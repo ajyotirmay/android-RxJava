@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TestDemo</string>
+    <string name="appTitle">TestDemo</string>
+    <string name="logoutButton">LogOut</string>
+    <string name="extractionMessage">Click the button and allow the permission to start the process</string>
+    <string name="extract_contacts_title">Extract Contacts</string>
+    <string name="extractionStartButton">Start</string>
 </resources>

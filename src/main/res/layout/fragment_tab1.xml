@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
-        android:background="@color/cardActivityBG"/>
+        android:background="@color/cardActivityBG"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"/>
 
 </RelativeLayout>

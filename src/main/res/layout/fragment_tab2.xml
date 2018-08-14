@@ -25,21 +25,21 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Extract Contacts"
+                android:text="@string/extract_contacts_title"
                 android:textSize="30sp"
                 android:textColor="@android:color/black"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Click the button and allow the permission to start the process"
+                android:text="@string/extractionMessage"
                 android:textSize="15sp"/>
 
             <Button
                 android:id="@+id/extractContact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Start"
+                android:text="@string/extractionStartButton"
                 android:layout_marginTop="5dp"
                 />
 

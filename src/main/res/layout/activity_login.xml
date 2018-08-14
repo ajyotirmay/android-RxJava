@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:background="@drawable/gradient_bg">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/uname"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:padding="5dp"
+            android:hint="Email Id"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="7dp"
+            android:inputType="textEmailAddress"
+            android:ems="20"
+            android:textSize="20sp"
+            android:background="@drawable/edit_text_style"/>
+
+        <EditText
+            android:id="@+id/passwd"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:inputType="textPassword"
+            android:hint="Password"
+            android:background="@drawable/edit_text_style"
+            android:textSize="20sp"
+            android:padding="5dp"
+            android:layout_below="@id/uname"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:text="Login"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="8dp"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:layout_below="@id/passwd"
+            android:background="@drawable/login_button"
+            android:onClick="login"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textSize="15sp"
+            android:textColor="#fff"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:onClick="signup"
+            android:layout_below="@id/login"
+            android:focusable="true" />
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

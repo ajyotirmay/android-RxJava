@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:background="@drawable/gradient_bg">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/uname_register"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_style"
+            android:ems="20"
+            android:hint="Email Id"
+            android:inputType="textEmailAddress"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/passwd_register"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_below="@id/uname_register"
+            android:layout_marginBottom="7dp"
+            android:background="@drawable/edit_text_style"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/passwd_register_verify"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_below="@id/passwd_register"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edit_text_style"
+            android:hint="Verify Password"
+            android:inputType="textPassword"
+            android:padding="5dp"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_below="@id/passwd_register_verify"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/login_button"
+            android:text="Register"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:onClick="register"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
