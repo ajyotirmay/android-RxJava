@@ -120,7 +120,7 @@ class Tab2 : Fragment() {
                     // No explanation needed; request the permission
                     activity?.let { it1 ->
                         ActivityCompat.requestPermissions(it1,
-                                arrayOf(Manifest.permission.READ_CONTACTS),
+                                arrayOf(Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_EXTERNAL_STORAGE),
                                 requestReadContactsPermission)
                     }
 
